@@ -1,0 +1,6 @@
+Django==4.0.3
+djangorestframework
+mysqlclient
+pymysql
+Pillow
+django-cors-headers
