@@ -1,5 +1,6 @@
 import re
 from unicodedata import category
+from django.http import JsonResponse
 from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -24,6 +25,9 @@ def list_exercises(request):
     list_exercises = Exercise.objects.all()
     list_exercises_serializer = ExerciseSerializer(list_exercises, many = True)
     return Response(list_exercises_serializer.data)
+    """ exercises = ExerciseSerializer(list_exercises, many = True).data
+    return JsonResponse({'status':'ok','exercises':exercises}, safe=False) """
+
 
 #list de ejercicio por categoría
 @api_view(['GET'])
