@@ -4,3 +4,4 @@ mysqlclient
 pymysql
 Pillow
 django-cors-headers
+django-simple-history

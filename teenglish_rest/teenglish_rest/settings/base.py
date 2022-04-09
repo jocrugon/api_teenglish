@@ -30,11 +30,14 @@ BASE_APPS = [
 
 LOCAL_APPS = [
     'apiBackend',
+    'users',
+    'base',
 ]
 
 THIRD_APPS = [
     'rest_framework',
     'corsheaders',
+    'simple_history',
 ]
 
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
@@ -48,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'simple_history.middleware.HistoryRequestMiddleware',
 ]
 
 ROOT_URLCONF = 'teenglish_rest.urls'
@@ -111,7 +115,11 @@ CORS_ALLOW_CREDENTIALS = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+AUTH_USER_MODEL = 'users.User'
+
 STATIC_URL = 'static/'
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
