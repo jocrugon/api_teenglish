@@ -27,7 +27,7 @@ class Student(BaseModel):
 
 class Category(BaseModel):
     category = models.CharField(max_length=100)
-    state = models.SmallIntegerField(default=1)
+    
     icon_name = models.CharField(max_length=50, blank=True, null=True, default="ban")
         
     class Meta:
@@ -41,7 +41,7 @@ class Category(BaseModel):
 
 class Type_exercise(BaseModel):
     type_exercise = models.CharField(max_length=100)
-    state = models.SmallIntegerField(default=1)
+    
         
     class Meta:
 
@@ -53,8 +53,8 @@ class Type_exercise(BaseModel):
 
 
 class Message_motivation(BaseModel):
-    message = models.TextField(max_length=100)
-    state = models.SmallIntegerField(default=1)
+    message = models.CharField(max_length=100)
+    
         
     class Meta:
 
@@ -72,7 +72,6 @@ class Exercise(BaseModel):
     instruction = models.CharField(max_length=100)
     phrase_translate = models.CharField(max_length=100, blank=True, null = True)
     score = models.IntegerField(default=20)
-    state = models.SmallIntegerField(default=1)
     icon_name = models.CharField(max_length=50, blank=True, null=True, default="ban")
             
     class Meta:
@@ -99,9 +98,8 @@ class List_exercises_category(BaseModel):
 
 class Option(BaseModel):
     option = models.CharField(max_length=30)
-    image = models.ImageField('Imagen de la opción', upload_to='exercises/', default="dfImage.jpg", blank=True, null=True)
+    image = models.ImageField('Imagen de la opción', upload_to='assets/exercises/', default="assets/dfImage.jpg", blank=True, null=True)
     is_correct = models.BooleanField(default=False)
-    state = models.SmallIntegerField(default=0)
         
     class Meta:
 
@@ -126,7 +124,7 @@ class List_options_exercise(BaseModel):
 
 
 class Learning(BaseModel):
-    image = models.ImageField('Image del theme', upload_to='learning/', default='dfImage.jpg', blank=True, null=True)
+    image = models.ImageField('Image del theme', upload_to='assets/learning/', default='assets/dfImage.jpg', blank=True, null=True)
     theme = models.CharField(max_length=20)
         
     class Meta:

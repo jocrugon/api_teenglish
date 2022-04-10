@@ -10,56 +10,26 @@ class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         exclude = ('state',)
+"""list themes in learning"""
+class LearningSerializer(serializers.ModelSerializer):
 
-
-"""list exercise"""
-class Type_exerciseSerializer(serializers.ModelSerializer):
-    
     class Meta:
-        model = Type_exercise
+        model = Learning
         exclude = ('state',)
 
 
-class Message_motivationSerializer(serializers.ModelSerializer):
-    
+class OptionsByThemeSerializer(serializers.ModelSerializer):
+
     class Meta:
-        model = Message_motivation
+        model = List_options_learning
         exclude = ('state',)
+
+    def to_representation(self, instance):
+        return {
+            'option': instance.option.option,
             
+        }
 
-class ExerciseSerializer(serializers.ModelSerializer):
-    message_motivation = Message_motivationSerializer()
-    type_exercise = Type_exerciseSerializer()
-    
-    class Meta:
-        model = Exercise
-        exclude = ('state',)
-
-
-"""list options by ExerciseId"""
-class OptionSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Option
-        fields = '__all__'
-
-
-class ListOptions_by_exerciseId(serializers.ModelSerializer):
-
-    option = OptionSerializer()
-    
-    class Meta:
-        model = List_options_exercise
-        fields = ['option']
-
-
-""" list exercise by category """
-class ListExercise_by_category(serializers.ModelSerializer):
-   
-    exercise = ExerciseSerializer()
-    class Meta:
-        model = List_exercises_category
-        fields = ['exercise']
 
 
 """Sign up"""
@@ -67,5 +37,5 @@ class StudentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Student
-        fields = '__all__'
+        exclude = ('state','created_date','modified_date','deleted_date')
 

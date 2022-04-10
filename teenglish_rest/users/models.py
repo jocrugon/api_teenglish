@@ -33,7 +33,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     name = models.CharField('Nombres', max_length = 255, blank = True, null = True)
     last_name_p = models.CharField('Apellido Paterno', max_length = 255, blank = True, null = True)
     last_name_m = models.CharField('Apellido Materno', max_length = 255, blank = True, null = True)
-    image = models.ImageField('Imagen de perfil', upload_to='perfil/', max_length=255, null=True, blank = True)
     is_active = models.BooleanField(default = True)
     is_staff = models.BooleanField(default = False)
     historical = HistoricalRecords()
@@ -47,4 +46,4 @@ class User(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = ['email','name','last_name_p','last_name_m']
 
     def __str__(self):
-        return f'{self.name} {self.last_name_p}, {self.last_name_m}'
+        return f'{self.name} {self.last_name_p} {self.last_name_m}'
