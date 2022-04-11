@@ -37,5 +37,5 @@ class StudentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Student
-        exclude = ('state','created_date','modified_date','deleted_date')
+        exclude = ('state',)
 
