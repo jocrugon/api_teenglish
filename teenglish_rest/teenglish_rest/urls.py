@@ -16,8 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from users.views import Login,Logout, UserToken
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', Login.as_view(),name = 'Login'),
+    path('logout/',Logout.as_view(), name= "logout"),
+    path('refresh-token/', UserToken.as_view(), name = 'refresh_token'),
     path('teenglish/', include('apiBackend.api.urls')),
     path('user/',include('users.api.urls')),
 ]

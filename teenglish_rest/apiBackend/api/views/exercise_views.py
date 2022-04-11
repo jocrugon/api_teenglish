@@ -2,11 +2,11 @@ from rest_framework import generics
 from rest_framework.response import Response
 
 from apiBackend.api.serializers.exercise_serializers import ExerciseSerializer, ExerciseByCategorySerializer, OptionsByExerciseSerializer
-from base.api import GeneralListApiView
 from apiBackend.models import List_exercises_category, List_options_exercise
+from users.authentication_mixins import Authentication
 
 """Exercise details"""
-class ExerciseRetrieveAPIView(generics.RetrieveAPIView):
+class ExerciseRetrieveAPIView(Authentication, generics.RetrieveAPIView):
     serializer_class = ExerciseSerializer
 
     def get_queryset(self):

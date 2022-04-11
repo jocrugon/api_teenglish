@@ -36,11 +36,14 @@ LOCAL_APPS = [
 
 THIRD_APPS = [
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
     'simple_history',
 ]
 
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
+
+TOKEN_EXPIRED_AFTER_SECONDS = 7889400
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
