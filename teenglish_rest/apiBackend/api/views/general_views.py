@@ -1,6 +1,8 @@
+from os import stat
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from rest_framework import status
 
 from apiBackend.models import *
 from apiBackend.api.serializers.general_serializers import *
@@ -30,34 +32,31 @@ class OptionsByThemeAPIView(Authentication,generics.RetrieveAPIView):
         option_serializer = OptionsByThemeSerializer(optionByTheme, many = True)
         return Response(option_serializer.data)
 
-class StudentByIdAccount(Authentication, generics.RetrieveAPIView):
+class StudentByIdAccount(Authentication, generics.RetrieveUpdateAPIView):
     serializer_class = StudentSerializer
 
-    def get_queryset(self):
-        return self.get_serializer().Meta.model.objects.filter(state = True)
-
-    def get(self, request, pk=None):
-        studentByIdAccount = Student.objects.filter(user=pk).first()
-        student_serializer = StudentSerializer(studentByIdAccount)
-        return Response(student_serializer.data)
+    def get_queryset(self, pk=None):
+        if pk is None:
+            return self.get_serializer().Meta.model.objects.filter(state = True)
+        else:
+            return self.get_serializer().Meta.model.objects.filter(id =pk, state = True).first()
 
 
+    
+    def patch(self, request,pk= None):
+        if self.get_queryset(pk):
+            student_serializer = self.serializer_class(self.get_queryset(pk))
+            return Response(student_serializer.data, status=status.HTTP_200_OK)
+        return Response({'error':'No existre un estudiante con esos datos!'},status=status.HTTP_400_BAD_REQUEST) 
+        
+    def put(self,request,pk=None):
+        if self.get_queryset(pk):
+            student_serializer = self.serializer_class(self.get_queryset(pk),data=request.data)
 
-"""get student por id y update"""
-@api_view(['GET','PUT'])
-def student_detail_and_update(request, pk = None):
-
-    if request.method == 'GET':
-        student = Student.objects.filter(id = pk).first()
-        student_serializer = StudentSerializer(student)
-        return Response(student_serializer.data)
-    elif request.method == 'PUT':
-        student = Student.objects.filter(id = pk).first()
-        student_serializer = StudentSerializer(student, data = request.data)
-        if student_serializer.is_valid():
-            student_serializer.save()
-            return Response(student_serializer.data)
-        return Response(student_serializer.errors)
+            if student_serializer.is_valid():
+                student_serializer.save()
+                return Response(student_serializer.data, status=status.HTTP_200_OK)
+            return Response(student_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-"""   """
+
