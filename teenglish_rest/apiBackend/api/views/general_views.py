@@ -30,7 +30,16 @@ class OptionsByThemeAPIView(Authentication,generics.RetrieveAPIView):
         option_serializer = OptionsByThemeSerializer(optionByTheme, many = True)
         return Response(option_serializer.data)
 
+class StudentByIdAccount(Authentication, generics.RetrieveAPIView):
+    serializer_class = StudentSerializer
 
+    def get_queryset(self):
+        return self.get_serializer().Meta.model.objects.filter(state = True)
+
+    def get(self, request, pk=None):
+        studentByIdAccount = Student.objects.filter(user=pk).first()
+        student_serializer = StudentSerializer(studentByIdAccount)
+        return Response(student_serializer.data)
 
 
 

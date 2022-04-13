@@ -7,13 +7,12 @@ from base.models import BaseModel
 # Create your models here.
 class Student(BaseModel):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    birth = models.DateField()
-    dni = models.CharField(max_length=8, unique=True, blank=True, null=True)
     genders = [
         ('F', 'Female'),
         ('M', 'Male')
     ]
     gender = models.CharField(max_length=1, choices=genders, default='F')
+    avatar = models.CharField(max_length=15, default=" ")
     current_score = models.IntegerField(default=0)
     
     class Meta:

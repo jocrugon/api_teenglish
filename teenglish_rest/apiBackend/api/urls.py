@@ -15,8 +15,10 @@ urlpatterns = [
     path('options/<int:pk>', OptionsByExerciseAPIView.as_view(), name='obtener lista de optiones por id de ejercicio'),
     #get options by idTheme-Learnig
     path('learning/options/<int:pk>',OptionsByThemeAPIView.as_view(), name="lista de optiones por theme"),
+    #get student by idCount
+    path('student/<int:pk>',StudentByIdAccount.as_view(), name="estudiante por id account"),
 
-]
+]   
 
 """
     path('exercise/', ExerciseAPIView.as_view(), name = 'lista de exercicios'),

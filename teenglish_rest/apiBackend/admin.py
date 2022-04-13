@@ -12,3 +12,4 @@ admin.site.register(List_options_exercise)
 admin.site.register(Learning)
 admin.site.register(List_options_learning)
 
+

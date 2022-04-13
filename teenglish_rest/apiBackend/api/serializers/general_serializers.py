@@ -31,11 +31,10 @@ class OptionsByThemeSerializer(serializers.ModelSerializer):
         }
 
 
-
-"""Sign up"""
+"""Student"""
 class StudentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Student
-        exclude = ('state',)
+        exclude = ('state','user',)
 
