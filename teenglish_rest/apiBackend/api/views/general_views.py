@@ -4,6 +4,7 @@ from rest_framework.decorators import api_view
 
 from apiBackend.models import *
 from apiBackend.api.serializers.general_serializers import *
+from users.authentication_mixins import Authentication
 
 from base.api import GeneralListApiView
 
@@ -11,14 +12,14 @@ from base.api import GeneralListApiView
 
 """GETS"""
 #list de categorias
-class CategoryAPIView(GeneralListApiView):
+class CategoryAPIView(Authentication,GeneralListApiView):
     serializer_class = CategorySerializer
 
 #list de themes in Learning
-class LearningAPIView(GeneralListApiView):
+class LearningAPIView(Authentication,GeneralListApiView):
     serializer_class = LearningSerializer
 
-class OptionsByThemeAPIView(generics.RetrieveAPIView):
+class OptionsByThemeAPIView(Authentication,generics.RetrieveAPIView):
     serializer_class = OptionsByThemeSerializer
 
     def get_queryset(self):

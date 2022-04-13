@@ -14,7 +14,7 @@ class ExerciseRetrieveAPIView(Authentication, generics.RetrieveAPIView):
 
 
 """Exercises by category"""
-class ExerciseByCategoryAPIView(generics.RetrieveAPIView):
+class ExerciseByCategoryAPIView(Authentication,generics.RetrieveAPIView):
     serializer_class = ExerciseByCategorySerializer
 
     def get_queryset(self):
@@ -27,7 +27,7 @@ class ExerciseByCategoryAPIView(generics.RetrieveAPIView):
 
 
 """Options by Exercise"""
-class OptionsByExerciseAPIView(generics.RetrieveAPIView):
+class OptionsByExerciseAPIView(Authentication,generics.RetrieveAPIView):
     serializer_class = OptionsByExerciseSerializer
 
     def get_queryset(self):
