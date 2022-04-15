@@ -33,6 +33,7 @@ class ExerciseByCategorySerializer(serializers.ModelSerializer):
             'id_exercise': instance.exercise.id,
             'type_exercise': instance.exercise.type_exercise.id,
             'exercise': instance.exercise.exercise,
+            'icon_name': instance.exercise.icon_name,
         }
 
 
