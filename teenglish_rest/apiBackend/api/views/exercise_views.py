@@ -2,7 +2,7 @@ from rest_framework import generics
 from rest_framework.response import Response
 
 from apiBackend.api.serializers.exercise_serializers import ExerciseSerializer, ExerciseByCategorySerializer, OptionsByExerciseSerializer
-from apiBackend.models import List_exercises_category, List_options_exercise
+from apiBackend.models import List_exercises_category, List_options_exercise, Exercise
 from users.authentication_mixins import Authentication
 
 """Exercise details"""
@@ -11,6 +11,18 @@ class ExerciseRetrieveAPIView(Authentication, generics.RetrieveAPIView):
 
     def get_queryset(self):
         return self.get_serializer().Meta.model.objects.filter(state = True)
+
+    def get(self, request, pk = None):
+        exercise = Exercise.objects.filter(id=pk).first()
+        exercise_serilizer = ExerciseSerializer(exercise)
+
+        optionByExercise = List_options_exercise.objects.filter(exercise = pk).all()
+        option_serializer = OptionsByExerciseSerializer(optionByExercise, many = True)
+
+        return Response({
+            'exercise':exercise_serilizer.data,
+            'options': option_serializer.data
+            })
 
 
 """Exercises by category"""
@@ -27,7 +39,7 @@ class ExerciseByCategoryAPIView(Authentication,generics.RetrieveAPIView):
 
 
 """Options by Exercise"""
-class OptionsByExerciseAPIView(Authentication,generics.RetrieveAPIView):
+""" class OptionsByExerciseAPIView(Authentication,generics.RetrieveAPIView):
     serializer_class = OptionsByExerciseSerializer
 
     def get_queryset(self):
@@ -36,5 +48,5 @@ class OptionsByExerciseAPIView(Authentication,generics.RetrieveAPIView):
     def get(self, request, pk=None):
         optionByExercise = List_options_exercise.objects.filter(exercise = pk).all()
         option_serializer = OptionsByExerciseSerializer(optionByExercise, many = True)
-        return Response(option_serializer.data)
+        return Response(option_serializer.data) """
     

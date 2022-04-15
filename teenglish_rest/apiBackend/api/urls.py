@@ -1,6 +1,6 @@
 from django.urls import path
 from apiBackend.api.views.general_views import *
-from apiBackend.api.views.exercise_views import  ExerciseRetrieveAPIView, ExerciseByCategoryAPIView,OptionsByExerciseAPIView
+from apiBackend.api.views.exercise_views import  ExerciseRetrieveAPIView, ExerciseByCategoryAPIView
 
 urlpatterns = [
     #get list
@@ -11,8 +11,6 @@ urlpatterns = [
     path('exercise/<int:pk>', ExerciseRetrieveAPIView.as_view(), name = 'detalle de ejercicio por id'),
     path('exercise/category/<int:pk>', ExerciseByCategoryAPIView.as_view(), name="lista de ejercicios por categoria"),
 
-    #get options by idExercise
-    path('options/<int:pk>', OptionsByExerciseAPIView.as_view(), name='obtener lista de optiones por id de ejercicio'),
     #get options by idTheme-Learnig
     path('learning/options/<int:pk>',OptionsByThemeAPIView.as_view(), name="lista de optiones por theme"),
     #get student by idCount and update
