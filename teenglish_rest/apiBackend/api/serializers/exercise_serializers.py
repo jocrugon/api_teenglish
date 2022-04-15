@@ -18,7 +18,6 @@ class ExerciseSerializer(serializers.ModelSerializer):
             'score': instance.score,
             'message_motivation': instance.message_motivation.message,
             'type_exercise': instance.type_exercise.type_exercise,
-            'icon_name':instance.icon_name
         }
 
 
