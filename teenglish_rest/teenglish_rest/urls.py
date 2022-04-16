@@ -16,6 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+#images
+from django.conf.urls.static import static
+from django.conf import settings
+
 from users.views import Login,Logout, UserToken
 
 urlpatterns = [
@@ -25,4 +29,6 @@ urlpatterns = [
     path('refresh-token/', UserToken.as_view(), name = 'refresh_token'),
     path('teenglish/', include('apiBackend.api.urls')),
     path('user/',include('users.api.urls')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+

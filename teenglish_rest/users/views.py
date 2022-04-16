@@ -1,6 +1,4 @@
-from sys import exec_prefix
 from django.contrib.sessions.models import Session
-from datetime import datetime
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView

@@ -6,6 +6,7 @@ urlpatterns = [
     #get list
     path('category/', CategoryAPIView.as_view(), name = 'category'),
     path('learning/', LearningAPIView.as_view(), name = 'lista de themes in Learning'),
+    path('learning/image/<int:id>', ImageAPIView.as_view(), name = 'imagen por id learning'),
     
     #get details 
     path('exercise/<int:pk>', ExerciseRetrieveAPIView.as_view(), name = 'detalle de ejercicio por id'),
