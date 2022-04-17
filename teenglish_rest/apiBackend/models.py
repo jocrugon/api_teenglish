@@ -97,7 +97,7 @@ class List_exercises_category(BaseModel):
 
 class Option(BaseModel):
     option = models.CharField(max_length=30)
-    image = models.ImageField('Imagen de la opción', upload_to='assets/exercises/', default="assets/dfImage.jpg", blank=True, null=True)
+    image = models.ImageField('Imagen de la opción', upload_to='images/exercises/', default="assets/dfImage.jpg", blank=True, null=True)
     is_correct = models.BooleanField(default=False)
         
     class Meta:
@@ -123,7 +123,7 @@ class List_options_exercise(BaseModel):
 
 
 class Learning(BaseModel):
-    image = models.ImageField('Image del theme', upload_to='assets/learning/', default='assets/dfImage.jpg', blank=True, null=True)
+    image = models.ImageField('Image del theme', upload_to='images/learning/', default='assets/dfImage.jpg', blank=True, null=True)
     theme = models.CharField(max_length=20)
         
     class Meta:

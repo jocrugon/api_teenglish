@@ -8,7 +8,6 @@ from apiBackend.models import *
 from apiBackend.api.serializers.general_serializers import *
 from users.authentication_mixins import Authentication
 
-from base.custom_renderers import JPEGRenderer, PNGRenderer
 
 from base.api import GeneralListApiView
 
@@ -22,14 +21,6 @@ class CategoryAPIView(Authentication,GeneralListApiView):
 class LearningAPIView(Authentication,GeneralListApiView):
     serializer_class = LearningSerializer
 
-''' prueba de obtención de imagen de learnig'''
-class ImageAPIView(generics.RetrieveAPIView):
-    renderer_classes = [JPEGRenderer]
-
-    def get(self, request, *args, **kwargs):
-        queryset = Learning.objects.get(id=self.kwargs['id']).image
-        data = queryset
-        return Response(data, content_type='image/jpg')
 
 class OptionsByThemeAPIView(Authentication,generics.RetrieveAPIView):
     serializer_class = OptionsByThemeSerializer
