@@ -27,6 +27,7 @@ class ExerciseByCategorySerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         return {
+            'id_detail': instance.id,
             'id_exercise': instance.exercise.id,
             'type_exercise': instance.exercise.type_exercise.id,
             'exercise': instance.exercise.exercise,
