@@ -10,7 +10,7 @@ class ExerciseSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         return {
- 
+            'id_exercise': instance.id,
             'exercise': instance.exercise,
             'instruction': instance.instruction,
             'phrase_translate':instance.phrase_translate,
@@ -31,6 +31,7 @@ class ExerciseByCategorySerializer(serializers.ModelSerializer):
             'type_exercise': instance.exercise.type_exercise.id,
             'exercise': instance.exercise.exercise,
             'icon_name': instance.exercise.icon_name,
+            'is_solved':instance.is_solved,
         }
 
 

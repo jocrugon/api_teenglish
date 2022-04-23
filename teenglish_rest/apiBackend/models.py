@@ -85,14 +85,16 @@ class Exercise(BaseModel):
 class List_exercises_category(BaseModel):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null = True)
     exercise = models.ForeignKey(Exercise, on_delete=models.SET_NULL, null = True)
-        
+    student = models.ForeignKey(Student, on_delete=models.SET_NULL, null=True)
+    is_solved = models.BooleanField(default=False)
+    
     class Meta:
 
         verbose_name = 'List_exercises_category'
         verbose_name_plural = 'List_exercises_categories'
     
     def __str__(self):
-        return f'category: |{self.category}| - exercise: |{self.exercise}|'
+        return f'student |{self.student}| - category: |{self.category}| - exercise: |{self.exercise}|'
 
 
 class Option(BaseModel):

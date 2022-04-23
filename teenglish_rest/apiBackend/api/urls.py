@@ -9,7 +9,7 @@ urlpatterns = [
     
     #get details 
     path('exercise/<int:pk>', ExerciseRetrieveAPIView.as_view(), name = 'detalle de ejercicio por id'),
-    path('exercise/category/<int:pk>', ExerciseByCategoryAPIView.as_view(), name="lista de ejercicios por categoria"),
+    path('exercise/category/<int:idStudent>/<int:idCategory>', ExerciseByCategoryAPIView.as_view(), name="lista de ejercicios por categoria"),
 
     #get options by idTheme-Learnig
     path('learning/options/<int:pk>',OptionsByThemeAPIView.as_view(), name="lista de optiones por theme"),

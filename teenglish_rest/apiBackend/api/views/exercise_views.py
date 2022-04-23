@@ -32,8 +32,8 @@ class ExerciseByCategoryAPIView(Authentication,generics.RetrieveAPIView):
     def get_queryset(self):
         return self.get_serializer().Meta.model.objects.filter(state = True)
 
-    def get(self, request, pk=None):
-        exerciseByCategory = List_exercises_category.objects.filter(category = pk).all()
+    def get(self, request, idCategory=None, idStudent = None):
+        exerciseByCategory = List_exercises_category.objects.filter( student=idStudent, category = idCategory).all()
         exercise_serializer = ExerciseByCategorySerializer(exerciseByCategory, many=True)
         return Response(exercise_serializer.data)
 
