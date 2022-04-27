@@ -10,6 +10,7 @@ class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         exclude = ('state',)
+        
 """list themes in learning"""
 class LearningSerializer(serializers.ModelSerializer):
 

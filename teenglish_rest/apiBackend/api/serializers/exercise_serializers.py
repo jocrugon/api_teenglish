@@ -11,6 +11,7 @@ class ExerciseSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         return {
             'id_exercise': instance.id,
+            'type_exercise':instance.type_exercise.type_exercise,
             'exercise': instance.exercise,
             'instruction': instance.instruction,
             'phrase_translate':instance.phrase_translate,
@@ -44,6 +45,9 @@ class OptionsByExerciseSerializer(serializers.ModelSerializer):
     
     def to_representation(self, instance):
         return {
+            'id': instance.option.id,
             'option': instance.option.option,
             'is_correct': instance.option.is_correct,
+            'image': instance.option.image.name,
+           
         }
