@@ -1,7 +1,6 @@
 Django==4.0.3
 djangorestframework
-mysqlclient
-pymysql
+psycopg2
 Pillow
 django-cors-headers
 django-simple-history
