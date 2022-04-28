@@ -1,0 +1,1 @@
+web: gunicorn teenglish_rest.wsgi
