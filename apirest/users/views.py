@@ -6,9 +6,10 @@ from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 
 from users.api.serializers import UserTokenSerializer
+from users.authentication_mixins import Authentication
 
 
-class UserToken(APIView):
+class UserToken(Authentication, APIView):
     def get(self, request,*args, **kwargs):
         username = request.GET.get('username')
         try:

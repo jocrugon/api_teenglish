@@ -13,8 +13,9 @@ urlpatterns = [
 
     #get options by idTheme-Learnig
     path('learning/options/<int:pk>',OptionsByThemeAPIView.as_view(), name="lista de optiones por theme"),
-    #get student by idCount and update
-    path('student/<int:pk>',StudentByIdAccount.as_view(), name="estudiante por id account y permite update"),
+    #get student by idCount 
+    path('student/<int:idAccount>',StudentByIdAccount.as_view(), name="estudiante por id account"),
+    path('student/update/<int:pk>',UpdateScoreInStudent.as_view(), name="update nota del studiante"),
 
     #update detailsExerciseByStudent&Category
     path('exercise/detail/update/<int:pk>', UpdateDetailExerciseByStudentAPIView.as_view(),name="update de detalle de ejercicio resulto"),
